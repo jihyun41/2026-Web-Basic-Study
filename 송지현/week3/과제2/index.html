@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Facts</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 1. 제목 영역 -->
+      <h1>🐱 Cat Facts</h1>
+
+      <div class="controls">
+        <!-- 2. 컨트롤 영역: 사용자 입력을 받는 부분 -->
+        <select id="language">
+          <!-- 언어 선택 드롭다운 -->
+          <option value="eng">English</option>
+          <option value="kor">한국어</option>
+        </select>
+        <!-- 버튼 영역 -->
+        <div class="buttons">
+          <button id="getFactBtn">Get Random Fact</button>
+          <div class="multiple-facts">
+            <input type="number" id="factCount" min="1" max="5" value="3" />
+            <button id="getMultipleBtn">Get Multiple Facts</button>
+          </div>
+        </div>
+      </div>
+      <!-- 3. 결과 표시 영역 -->
+      <div id="loading" class="loading hidden">Loading...</div>
+      <div id="error" class="error hidden"></div>
+      <div id="factContainer" class="facts"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
