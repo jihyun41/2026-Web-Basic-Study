@@ -53,6 +53,7 @@ async function fetchFacts(count = 1) {
   
     showLoading();
     const response = await fetch(url);
+    if (!response.ok) throw new Error("Failed to fetch cat facts");
     const data = await response.json();
     return data.data;
   } catch (err) {
@@ -64,21 +65,22 @@ async function fetchFacts(count = 1) {
 
 getFactBtn.addEventListener("click", async () => {
   const facts = await fetchFacts();
-  displayFacts(facts[0]);
+  if(Array.isArray(facts[0]) || facts[0].length > 0) {
+    displayFacts(facts[0]);
+  }
 });
 
 getMultipleBtn.addEventListener("click", async () => {
-  let count = parseInt(factCount.value);
+  const count = parseInt(factCount.value) || 1;
+
   if (count < 1 || count > 5) {
     showError("Please enter a number between 1 and 5");
     return;
   }
   const facts = await fetchFacts(count);
   displayFacts(facts);
-
 });
 
-// 페이지 로드시 자동으로 하나의 고양이 사실 가져오기
 window.addEventListener("load", () => {
   getFactBtn.click();
 });
